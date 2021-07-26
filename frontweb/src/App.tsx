@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
 
-function App() {
-  return (
-    <div>
-      <h1>MovieFlix</h1>
-    </div>
-  );
-}
+import './assets/styles/custom.scss';
+import './App.css';
+import Routes from './Routes';
+
+const App = () => {
+	return <Routes />;
+};
 
 export default App;
