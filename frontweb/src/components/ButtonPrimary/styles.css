@@ -23,6 +23,10 @@
   .btn-content h6 {
     font-size: 1.2em;
   }
+
+  .btn-container button {
+    height: 65px;
+  }
 }
 
 @media (min-width: 1200px) {
