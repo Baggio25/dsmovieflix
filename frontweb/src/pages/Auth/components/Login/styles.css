@@ -25,3 +25,12 @@
 		font-size: 48px;
 	}
 }
+
+@media (min-width: 1200px) {
+	.login-card {
+		margin: 0;
+		width: 480px;
+		padding: 74px 44px 84px 51px;
+	}
+
+}
