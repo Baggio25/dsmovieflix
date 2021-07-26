@@ -41,7 +41,8 @@ a:hover {
 	font-size: 1em;
 	letter-spacing: -0.015em;
 	color: #263238;
-	height: 50px;
+	height: 46px;
+	margin-bottom: 30px;
 }
 
 .base-input::placeholder {

@@ -1,12 +1,29 @@
-
+import { ReactComponent as AuthImage } from '../../assets/images/main-image.svg';
 import './styles.css';
+import { Route, Switch } from 'react-router-dom';
+import Login from '../Auth/components/Login';
 
 const Auth = () => {
-  return (
-    <>
-      <h1>Auth - Home</h1>
-    </>
-  );
+	return (
+		<div className="auth-container">
+			<div className="auth-info">
+				<h1 className="auth-info-title"> Avalie Filmes</h1>
+				<p className="auth-info-subtitle">
+					Diga o que você achou do seu filme favorito
+				</p>
+				<AuthImage className="main-image" />
+			</div>
+			<div className="auth-content">
+				<div>
+					<Switch>
+						<Route path="/auth/login">
+							<Login />
+						</Route>
+					</Switch>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Auth;
