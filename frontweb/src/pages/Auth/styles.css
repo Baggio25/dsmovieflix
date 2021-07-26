@@ -16,3 +16,9 @@
     padding: 40px 48px 182px 49px;
   }
 }
+
+@media (min-width: 768px) {
+  .auth-container {
+    padding: 40px 144px 304px 145px;
+  }
+}
