@@ -1,19 +1,31 @@
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Switch, Route, Redirect, Router } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import Auth from './pages/Auth';
+import history from './util/history';
 import Catalog from './pages/Catalog';
-import MovieDetails from './pages/Catalog/MovieDetails';
+import MovieDetails from './pages/MovieDetails';
 
-const Routes = () => (
-	<BrowserRouter>
-		<Navbar />
-		<Switch>
-			<Redirect from="/" to="/auth/login" exact />
-			<Route path="/">
-				<Auth />
-			</Route>
-		</Switch>
-	</BrowserRouter>
-);
+
+const Routes = () => {
+  return (
+    <Router history={history}>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact>
+          <Auth />
+        </Route>
+        <Route path="/movies" exact>
+          <Catalog />
+        </Route>
+        <Route path="/movies/:movieId" >
+          <MovieDetails />
+        </Route>
+       
+      </Switch>
+    </Router>
+  );
+}
 
 export default Routes;

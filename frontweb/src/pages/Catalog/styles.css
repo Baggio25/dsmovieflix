@@ -1,0 +1,30 @@
+.catalog-container {
+  padding: 12px;
+  font-size: 24px;
+}
+
+.catalog-title {
+	color: #fff;
+}
+
+.catalog-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  color: #fff;
+}
+
+.calalog-body a {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+	.catalog-container {
+		padding: 40px;
+	}
+
+	.catalog-body {
+		margin-top: 40px;
+	}
+}
