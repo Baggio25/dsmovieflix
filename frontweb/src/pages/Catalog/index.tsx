@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import { getTokenData, isAuthenticated } from '../../util/requests';
 import './styles.css';
 
 const Catalog = () => {
 	return (
 		<div className="catalog-container">
+			<h1>{isAuthenticated() ? 'Autenticado' : 'Não atenticado'}</h1>
 			<div className="catalog-title">
 				<h1>Tela listagem de filmes</h1>
 			</div>

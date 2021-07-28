@@ -1,5 +1,4 @@
 import { ReactComponent as StarIcon } from '../../../../assets/images/star.svg';
-import { Movie } from '../../../../types/movie';
 
 type Props = {
 	autorReview?: string;
