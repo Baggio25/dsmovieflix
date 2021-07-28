@@ -1,13 +1,38 @@
-import { ReactComponent as StarIcon } from '../../assets/images/star.svg';
+import { AxiosRequestConfig } from 'axios';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ButtonPrimary from '../../components/ButtonPrimary';
+import { Movie } from '../../types/movie';
+import { requestBackend } from '../../util/requests';
+import ReviewList from './components/ReviewList';
 import './styles.css';
 
+type ParamsType = {
+	movieId: string;
+};
+
 const MovieDetails = () => {
+	const { movieId } = useParams<ParamsType>();
+	const [movie, setMovie] = useState<Movie>();
+
+	useEffect(() => {
+		const config: AxiosRequestConfig = {
+			method: 'GET',
+			url: `/movies/${movieId}`,
+			withCredentials: true
+		};
+
+		requestBackend(config).then((response) => {
+			setMovie(response.data);
+			console.log(response.data);
+		});
+	}, [movieId]);
+
 	return (
 		<div className="movie-details-container">
 			<div className="movie-details-title">
 				<h1>Tela detalhes do filme</h1>
-				<h1>Id: 1</h1>
+				<h1>Id: {movie?.id}</h1>
 			</div>
 			<div className="movie-details-card-new-review base-card">
 				<form>
@@ -25,32 +50,13 @@ const MovieDetails = () => {
 				</form>
 			</div>
 			<div className="movie-details-card-reviews base-card">
-				<div className="movie-details-card-reviews__list">
-					<div className="movie-details-card-reviews__top">
-						<div className="movie-details-card-review__star">
-							<StarIcon />
-						</div>
-						<div className="movie-details-card-review__person">
-							<span>Ana dos Anjos</span>
-						</div>
-					</div>
-					<div className="movie-details-card-review__text">
-            <p>Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.</p>
-          </div>
-				</div>
-				<div className="movie-details-card-reviews__list">
-					<div className="movie-details-card-reviews__top">
-						<div className="movie-details-card-review__star">
-							<StarIcon />
-						</div>
-						<div className="movie-details-card-review__person">
-							<span>Ana dos Anjos</span>
-						</div>
-					</div>
-					<div className="movie-details-card-review__text">
-            <p>Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.</p>
-          </div>
-				</div>
+				{movie?.reviews.map(review => (
+					<ReviewList
+						key={review.id}
+						autorReview={review.user.name}
+						commentReview={review.text}
+					/>
+				))}
 			</div>
 		</div>
 	);

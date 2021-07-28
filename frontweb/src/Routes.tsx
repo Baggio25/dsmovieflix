@@ -1,16 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect, Router } from 'react-router-dom';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Auth from './pages/Auth';
-import history from './util/history';
 import Catalog from './pages/Catalog';
 import MovieDetails from './pages/MovieDetails';
 
 
+
 const Routes = () => {
   return (
-    <Router history={history}>
+    <BrowserRouter>
       <Navbar />
       <Switch>
         <Route path="/" exact>
@@ -24,7 +23,7 @@ const Routes = () => {
         </Route>
        
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 

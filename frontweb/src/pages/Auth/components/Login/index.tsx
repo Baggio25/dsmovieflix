@@ -1,9 +1,10 @@
-import { useForm } from 'react-hook-form';
-
-import { getAuthData, requestBackendLogin, saveAuthData } from '../../../../util/requests';
-import ButtonPrimary from '../../../../components/ButtonPrimary';
-import './styles.css';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import ButtonPrimary from '../../../../components/ButtonPrimary';
+import { requestBackendLogin, saveAuthData } from '../../../../util/requests';
+import './styles.css';
+
 
 type FormData = {
 	username: string;
@@ -17,18 +18,15 @@ const Login = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>();
+
+	const history = useHistory();
+	
 	const onSubmit = (formData: FormData) => {
 		requestBackendLogin(formData)
 			.then((response) => {
 				saveAuthData(response.data);
-				
-				const token = getAuthData().access_token;
-				const refreshToken = getAuthData().refresh_token;
-				console.log('Token Gerado ' + token);
-				console.log('Refresh_Token Gerado ' + refreshToken);
-				
 				setHasError(false);
-				console.log('SUCESSO ', response);
+				history.push("/movies");
 			})
 			.catch((error) => {
 				setHasError(true);

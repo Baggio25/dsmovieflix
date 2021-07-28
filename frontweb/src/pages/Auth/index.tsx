@@ -1,6 +1,5 @@
 import { ReactComponent as AuthImage } from '../../assets/images/main-image.svg';
 import './styles.css';
-import { Route, Switch } from 'react-router-dom';
 import Login from '../Auth/components/Login';
 
 const Auth = () => {
