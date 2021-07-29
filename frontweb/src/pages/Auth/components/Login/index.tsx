@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../../../AuthContext';
 import ButtonPrimary from '../../../../components/ButtonPrimary';
-import { requestBackendLogin, saveAuthData } from '../../../../util/requests';
+import {
+	getTokenData,
+	requestBackendLogin,
+	saveAuthData,
+} from '../../../../util/requests';
 import './styles.css';
-
 
 type FormData = {
 	username: string;
@@ -12,6 +16,7 @@ type FormData = {
 };
 
 const Login = () => {
+	const { setAuthContextData } = useContext(AuthContext);
 	const [hasError, setHasError] = useState(false);
 	const {
 		register,
@@ -20,13 +25,17 @@ const Login = () => {
 	} = useForm<FormData>();
 
 	const history = useHistory();
-	
+
 	const onSubmit = (formData: FormData) => {
 		requestBackendLogin(formData)
 			.then((response) => {
 				saveAuthData(response.data);
 				setHasError(false);
-				history.push("/movies");
+				setAuthContextData({
+					authenticated: true,
+					tokenData: getTokenData(),
+				});
+				history.push('/movies');
 			})
 			.catch((error) => {
 				setHasError(true);
@@ -49,16 +58,18 @@ const Login = () => {
 						{...register('username', {
 							required: 'Campo obrigatório',
 							pattern: {
-								value:  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-								message: 'Email inválido'
-							}
+								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+								message: 'Email inválido',
+							},
 						})}
 						type="text"
-						className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
+						className={`form-control base-input ${
+							errors.username ? 'is-invalid' : ''
+						}`}
 						placeholder="Email"
 						name="username"
 						autoFocus
-						/>
+					/>
 					<div className="is-invalid-default d-block">
 						{errors.username?.message}
 					</div>
@@ -69,7 +80,9 @@ const Login = () => {
 							required: 'Campo obrigatório',
 						})}
 						type="password"
-						className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+						className={`form-control base-input ${
+							errors.password ? 'is-invalid' : ''
+						}`}
 						placeholder="Senha"
 						name="password"
 					/>
