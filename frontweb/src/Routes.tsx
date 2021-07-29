@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import PrivateRoute from './components/PrivateRoute';
 import Auth from './pages/Auth';
 import Catalog from './pages/Catalog';
 import MovieDetails from './pages/MovieDetails';
@@ -16,12 +17,12 @@ const Routes = () => {
         <Route path="/" exact>
           <Auth />
         </Route>
-        <Route path="/movies" exact>
+        <PrivateRoute path="/movies" exact={true}>
           <Catalog />
-        </Route>
-        <Route path="/movies/:movieId" >
+        </PrivateRoute>
+        <PrivateRoute path="/movies/:movieId" exact={true}>
           <MovieDetails />
-        </Route>
+        </PrivateRoute>
        
       </Switch>
     </Router>
