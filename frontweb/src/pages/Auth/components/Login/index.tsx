@@ -4,9 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../../../AuthContext';
 import ButtonPrimary from '../../../../components/ButtonPrimary';
 import {
-	getTokenData,
-	requestBackendLogin,
-	saveAuthData,
+	getTokenData, requestBackendLogin,
+	saveAuthData
 } from '../../../../util/requests';
 import './styles.css';
 
