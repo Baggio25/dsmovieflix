@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import { Movie } from '../../types/movie';
-import { hasAnyRoles, requestBackend } from '../../util/requests';
+import { hasAnyRoles } from '../../util/auth';
+import { requestBackend } from '../../util/requests';
 import ReviewList from './components/ReviewList';
 import './styles.css';
 
