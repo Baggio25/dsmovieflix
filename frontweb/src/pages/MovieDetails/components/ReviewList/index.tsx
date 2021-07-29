@@ -17,7 +17,7 @@ const ReviewList = ({ autorReview, commentReview }: Props) => {
 				</div>
 			</div>
 			<div className="movie-details-card-review__text">
-				<p>
+				<p className="movie-details-card-review__comment">
           {commentReview}
 				</p>
 			</div>

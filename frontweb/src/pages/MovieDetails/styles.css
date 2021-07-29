@@ -47,6 +47,10 @@
 	color: #9e9e9e;
 }
 
+.movie-details-card-review__comment {
+	width: 100px;
+}
+
 @media (min-width: 576px) {
   .movie-details-container {
     padding: 40px 48px;
