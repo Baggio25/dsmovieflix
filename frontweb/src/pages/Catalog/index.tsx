@@ -1,7 +1,62 @@
+import { AxiosRequestConfig } from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { Movie } from '../../types/movie';
+import { SpringPage } from '../../types/vendor/spring';
+import { requestBackend } from '../../util/requests';
 import CardMovie from './CardMovie';
 import './styles.css';
 
+type ControlComponentsData = {
+	activePage: number;
+	filterData: string;
+};
+
 const Catalog = () => {
+
+	const [page, setPage] = useState<SpringPage<Movie>>();
+	const [isLoading, setIsLoading] = useState(false);
+
+	const [controlComponentsData, setControlComponentsData] =
+		useState<ControlComponentsData>({
+			activePage: 0,
+			filterData: '',
+		});
+
+	const handlePageChange = (pageNumber: number) => {
+		setControlComponentsData({
+			activePage: pageNumber,
+			filterData: controlComponentsData.filterData,
+		});
+	};
+
+	const handleSubmitFilter = (filterData: string) => {
+		setControlComponentsData({ activePage: 0, filterData: filterData });
+	};
+
+	const getMovies = useCallback(() => {
+		const config: AxiosRequestConfig = {
+			method: 'GET',
+			url: `/movies`,
+			params: {
+				page: controlComponentsData.activePage,
+				size: 8,
+				name: controlComponentsData.filterData,
+			},
+		};
+
+		setIsLoading(true);
+		requestBackend(config)
+			.then((response) => {
+				setPage(response.data);
+				console.log(response.data);
+			})
+			.finally(() => setIsLoading(false));
+	}, [controlComponentsData]);
+
+	useEffect(() => {
+		getMovies();
+	}, [getMovies]);
+
 	return (
 		<div className="catalog-container">
 			<div className="base-card catalog-filter-container">
