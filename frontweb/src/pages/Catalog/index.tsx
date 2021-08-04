@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Movie } from '../../types/movie';
 import { SpringPage } from '../../types/vendor/spring';
 import { requestBackend } from '../../util/requests';
@@ -12,7 +13,6 @@ type ControlComponentsData = {
 };
 
 const Catalog = () => {
-
 	const [page, setPage] = useState<SpringPage<Movie>>();
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -64,21 +64,18 @@ const Catalog = () => {
 			</div>
 			<div className="catalog-body">
 				<div className="row">
-					<div className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3">
-						<CardMovie />
-					</div>
-					<div className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3">
-						<CardMovie />
-					</div>
-					<div className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3">
-						<CardMovie />
-					</div>
-					<div className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3">
-						<CardMovie />
-					</div>
-					<div className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3">
-						<CardMovie />
-					</div>
+					{page?.content.map((movie) => {
+						return (
+							<div
+								className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3"
+								key={movie.id}
+							>
+								<Link to={`/movies/${movie.id}`}>
+									<CardMovie />
+								</Link>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		</div>
