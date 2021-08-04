@@ -5,7 +5,7 @@ import { getAuthData } from './storage';
 
 export const BASE_URL =
 	process.env.REACT_APP_BACKEND_URL ??
-	'https://rbaggio-dscatalog-deploy.herokuapp.com';
+	'https://rbaggio-movieflix-deploy.herokuapp.com';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'myclientid';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'myclientsecret';

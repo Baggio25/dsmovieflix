@@ -68,3 +68,14 @@
   }
   
 }
+
+@media(min-width: 1200px) {
+  .movie-card {
+    padding: 26px 0 34px 0;
+  }
+ 
+  .movie-image {
+    margin-bottom: 10px;
+  }
+  
+}
