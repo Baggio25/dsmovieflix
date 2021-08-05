@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MovieFilter, { MovieFilterData } from '../../components/MovieFilter';
+import Pagination from '../../components/Pagination';
 import { Movie } from '../../types/movie';
 import { SpringPage } from '../../types/vendor/spring';
 import { requestBackend } from '../../util/requests';
@@ -22,12 +23,12 @@ const Catalog = () => {
 			filterData: { genre: null },
 		});
 
-	/* const handlePageChange = (pageNumber: number) => {
+	const handlePageChange = (pageNumber: number) => {
 		setControlComponentsData({
 			activePage: pageNumber,
 			filterData: controlComponentsData.filterData,
 		});
-	}; */
+	};
 
 	const handleSubmitFilter = (filterData: MovieFilterData) => {
 		setControlComponentsData({ activePage: 0, filterData: filterData });
@@ -67,10 +68,17 @@ const Catalog = () => {
 							key={movie.id}
 						>
 							<Link to={`/movies/${movie.id}`}>
-								<CardMovie movie={movie}/>
+								<CardMovie movie={movie} />
 							</Link>
 						</div>
 					))}
+				</div>
+				<div className="row">
+					<Pagination
+						pageCount={page ? page?.totalPages : 0}
+						range={4}
+						onChange={handlePageChange}
+					/>
 				</div>
 			</div>
 		</div>
