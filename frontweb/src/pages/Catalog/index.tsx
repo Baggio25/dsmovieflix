@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import MovieFilter, { MovieFilterData } from '../../components/MovieFilter';
 import { Movie } from '../../types/movie';
 import { SpringPage } from '../../types/vendor/spring';
 import { requestBackend } from '../../util/requests';
@@ -9,17 +10,16 @@ import './styles.css';
 
 type ControlComponentsData = {
 	activePage: number;
-	filterData: string;
+	filterData: MovieFilterData;
 };
 
 const Catalog = () => {
 	const [page, setPage] = useState<SpringPage<Movie>>();
-	const [isLoading, setIsLoading] = useState(false);
 
 	const [controlComponentsData, setControlComponentsData] =
 		useState<ControlComponentsData>({
 			activePage: 0,
-			filterData: '',
+			filterData: { genre: null },
 		});
 
 	const handlePageChange = (pageNumber: number) => {
@@ -29,28 +29,25 @@ const Catalog = () => {
 		});
 	};
 
-	const handleSubmitFilter = (filterData: string) => {
+	const handleSubmitFilter = (filterData: MovieFilterData) => {
 		setControlComponentsData({ activePage: 0, filterData: filterData });
 	};
 
 	const getMovies = useCallback(() => {
 		const config: AxiosRequestConfig = {
 			method: 'GET',
-			url: `/movies`,
+			url: `/movies?sort=id,desc`,
 			params: {
 				page: controlComponentsData.activePage,
 				size: 8,
-				name: controlComponentsData.filterData,
+				genreId: controlComponentsData.filterData.genre?.id,
 			},
 		};
 
-		setIsLoading(true);
-		requestBackend(config)
-			.then((response) => {
-				setPage(response.data);
-				console.log(response.data);
-			})
-			.finally(() => setIsLoading(false));
+		requestBackend(config).then((response) => {
+			setPage(response.data);
+			console.log(response.data);
+		});
 	}, [controlComponentsData]);
 
 	useEffect(() => {
@@ -60,22 +57,20 @@ const Catalog = () => {
 	return (
 		<div className="catalog-container">
 			<div className="base-card catalog-filter-container">
-				Filtro Gênero
+				<MovieFilter onSubmitFilter={handleSubmitFilter} />
 			</div>
 			<div className="catalog-body">
 				<div className="row">
-					{page?.content.map((movie) => {
-						return (
-							<div
-								className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3"
-								key={movie.id}
-							>
-								<Link to={`/movies/${movie.id}`}>
-									<CardMovie />
-								</Link>
-							</div>
-						);
-					})}
+					{page?.content.map((movie) => (
+						<div
+							className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3"
+							key={movie.id}
+						>
+							<Link to={`/movies/${movie.id}`}>
+								<CardMovie />
+							</Link>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>
