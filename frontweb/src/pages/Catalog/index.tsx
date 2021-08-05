@@ -22,12 +22,12 @@ const Catalog = () => {
 			filterData: { genre: null },
 		});
 
-	const handlePageChange = (pageNumber: number) => {
+	/* const handlePageChange = (pageNumber: number) => {
 		setControlComponentsData({
 			activePage: pageNumber,
 			filterData: controlComponentsData.filterData,
 		});
-	};
+	}; */
 
 	const handleSubmitFilter = (filterData: MovieFilterData) => {
 		setControlComponentsData({ activePage: 0, filterData: filterData });
@@ -63,7 +63,7 @@ const Catalog = () => {
 				<div className="row">
 					{page?.content.map((movie) => (
 						<div
-							className="col-sm-6 col-lg-6 col-xl-4 col-xxl-3"
+							className="col-sm-6 col-lg-6 col-xl-3 col-xxl-3"
 							key={movie.id}
 						>
 							<Link to={`/movies/${movie.id}`}>

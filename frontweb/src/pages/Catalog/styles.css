@@ -34,6 +34,10 @@
   .catalog-container {
     padding: 40px 140px 392px 140px;
   }
+
+  .catalog-filter-container {
+    padding: 15px 20px;
+  }
 }
 
 
