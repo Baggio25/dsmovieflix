@@ -63,9 +63,18 @@ const MovieDetails = () => {
 
 	return (
 		<div className="movie-details-container">
-			<div className="movie-details-title">
-				<h1>Tela detalhes do filme</h1>
-				<h1>Id: {movie?.id}</h1>
+			<div className="base-card movie-details">
+				<div className="movie-details-image">
+					<img src={movie?.imgUrl} alt={movie?.title} />
+				</div>
+				<div className="movie-details-description">
+					<h3>{movie?.title}</h3>
+					<h4>{movie?.year}</h4>
+					<p>{movie?.subTitle}</p>
+				</div>
+				<div className="movie-details-synopse">
+					<p>{movie?.synopsis}</p>
+				</div>
 			</div>
 			{hasAnyRoles(['ROLE_MEMBER']) && (
 				<div className="movie-details-card-new-review base-card">

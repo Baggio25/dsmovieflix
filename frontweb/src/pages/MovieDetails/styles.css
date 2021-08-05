@@ -2,8 +2,54 @@
 	padding: 12px;
 }
 
-.movie-details-title {
+.movie-details {
+	padding: 20px;
+}
+
+.movie-details-image {
+	width: 100%;
+	height: auto;
+}
+
+.movie-details-image img {
+	width: 100%;
+	height: auto;
+}
+
+.movie-details-description {
+	margin-top: 18px;
+}
+
+.movie-details-description h3 {
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: -0.015em;
 	color: #fff;
+}
+
+.movie-details-description h4 {
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: -0.015em;
+	color: #ffc700;
+}
+
+.movie-details-description p {
+	color: #fff;
+	font-size: 14px;
+	letter-spacing: -0.015em;
+}
+
+.movie-details-synopse {
+	padding: 13px;
+	border: 1px solid #e1e1e1;
+	box-sizing: border-box;
+	border-radius: 10px;
+	text-align: justify;
+}
+
+.movie-details-synopse p {
+	color: #9e9e9e;
 }
 
 .movie-details-card-new-review {
@@ -52,14 +98,42 @@
 }
 
 @media (min-width: 576px) {
-  .movie-details-container {
-    padding: 40px 48px;
-  }
+	.movie-details-container {
+		padding: 20px;
+	}
+
+	.movie-details-description {
+		margin-top: 15px;
+	}
 }
 
 @media (min-width: 768px) {
 	.movie-details-container {
-		padding: 20px 144px;
+		padding: 40px;
+	}
+	.movie-details-description {
+		margin-top: 40px;
+	}
+
+	.movie-details-description h3 {
+		font-size: 36px;
+	}
+
+	.movie-details-description h4 {
+		font-size: 24px;
+	}
+
+	.movie-details-description p {
+		font-size: 20px;
+	}
+
+	.movie-details-synopse {
+		padding: 18px;
+	}
+
+
+	.movie-details-card-new-review {
+		margin-top: 50px;
 	}
 }
 
@@ -68,33 +142,33 @@
 		padding: 40px 104px;
 	}
 
-  .movie-details-card-submit button{
-    width: 230px;
-    height: 50px;
-  }
+	.movie-details-card-submit button {
+		width: 230px;
+		height: 50px;
+	}
 
-  .movie-details-card-new-review{
-    padding: 24px 33px;
-  }
+	.movie-details-card-new-review {
+		padding: 24px 33px;
+	}
 
-  .movie-details-card-review__text { 
-    font-size: 18px;
-  }
+	.movie-details-card-review__text {
+		font-size: 18px;
+	}
 }
 
 @media (min-width: 1200px) {
-  .movie-details-container {
+	.movie-details-container {
 		padding: 36px 40px;
 	}
 
-  .movie-details-card-submit{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+	.movie-details-card-submit {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
-  .movie-details-card-submit button{
-    width: 334px;
-    height: 50px;
-  }
+	.movie-details-card-submit button {
+		width: 334px;
+		height: 50px;
+	}
 }
