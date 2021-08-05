@@ -67,7 +67,7 @@ const Catalog = () => {
 							key={movie.id}
 						>
 							<Link to={`/movies/${movie.id}`}>
-								<CardMovie />
+								<CardMovie movie={movie}/>
 							</Link>
 						</div>
 					))}
