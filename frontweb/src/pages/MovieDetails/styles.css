@@ -131,9 +131,12 @@
 		padding: 18px;
 	}
 
-
 	.movie-details-card-new-review {
-		margin-top: 50px;
+		margin-top: 40px;
+	}
+
+	.movie-details-card-reviews {
+		margin-top: 40px;
 	}
 }
 
@@ -142,9 +145,9 @@
 		padding: 40px 104px;
 	}
 
-	.movie-details-card-submit button {
-		width: 230px;
-		height: 50px;
+	.movie-details-image {
+		padding: 0 112px;
+		text-align: center;
 	}
 
 	.movie-details-card-new-review {
@@ -157,8 +160,43 @@
 }
 
 @media (min-width: 1200px) {
+
+	
 	.movie-details-container {
-		padding: 36px 40px;
+		padding: 40px 40px;
+	}
+	
+	.movie-details {
+		display: flex;
+		justify-content: space-around;
+		padding: 30px 20px;
+	}
+
+	.movie-details-image {
+		padding: 0;
+		width: 500px;
+		height: auto;
+	}
+
+	.movie-details-image img {
+		width: 100%;
+		height: auto;
+	}
+
+	.movie-details-description {
+		padding: 0;
+		margin-top: 0;
+	}
+	
+	.movie-details-description-container {
+		display: flex;
+		flex-direction: column;
+		width: 500px;
+		padding: 0;
+	}
+
+	.movie-details-synopse {
+		margin-bottom: 20px;
 	}
 
 	.movie-details-card-submit {
@@ -170,5 +208,12 @@
 	.movie-details-card-submit button {
 		width: 334px;
 		height: 50px;
+	}
+}
+
+@media (min-width: 1400px) {
+
+	.movie-details-container {
+		padding: 40px 130px;
 	}
 }

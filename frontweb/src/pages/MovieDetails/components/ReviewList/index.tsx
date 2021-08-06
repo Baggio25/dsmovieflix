@@ -1,11 +1,11 @@
 import { ReactComponent as StarIcon } from '../../../../assets/images/star.svg';
+import { Review } from '../../../../types/review';
 
 type Props = {
-	autorReview?: string;
-	commentReview?: string;
+	review: Review;
 }
 
-const ReviewList = ({ autorReview, commentReview }: Props) => {
+const ReviewList = ({ review }: Props) => {
 	return (
 		<div className="movie-details-card-reviews__list">
 			<div className="movie-details-card-reviews__top">
@@ -13,12 +13,12 @@ const ReviewList = ({ autorReview, commentReview }: Props) => {
 					<StarIcon />
 				</div>
 				<div className="movie-details-card-review__person">
-					<span>{autorReview}</span>
+					<span>{review.user.name}</span>
 				</div>
 			</div>
 			<div className="movie-details-card-review__text">
 				<p className="movie-details-card-review__comment">
-          {commentReview}
+          {review.text}
 				</p>
 			</div>
 		</div>
