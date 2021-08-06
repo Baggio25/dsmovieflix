@@ -24,7 +24,6 @@
 
 .movie-filter-select__value-container {
 	color: #ffffff !important;
-
 }
 
 .movie-filter-select__menu {
@@ -32,7 +31,20 @@
 	background-color: #6C6C6C	!important;
 }
 
+.movie-filter-select__option {
+	color: #ffffff !important;
+	background-color: #6C6C6C	!important;
+}
+
 .movie-filter-select__indicator-separator {
 	display: none;
+}
+
+.movie-filter-select__indicator{
+	color: #ffffff !important;
+}
+
+.movie-filter-select__single-value {
+	color: #ffffff !important;
 }
 

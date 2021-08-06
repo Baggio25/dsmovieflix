@@ -9,9 +9,9 @@ import { ReviewInsert } from '../../types/review';
 import { hasAnyRoles } from '../../util/auth';
 import { requestBackend } from '../../util/requests';
 import ReviewList from './components/ReviewList';
-import './styles.css';
-import CardLoader from './../Catalog/CardLoader/index';
 import MovieDetailsLoader from './MovieDetailsLoader';
+
+import './styles.css';
 
 type ParamsType = {
 	movieId: string;
